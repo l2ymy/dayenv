@@ -6,59 +6,72 @@ set history=60000
 set background=dark
 colorscheme desert
 
+"----------------------
 " ForGUI
 set lines=56
 set columns=108
 set guioptions+=a
 set guioptions+=R
+"set guioptions-=m
 
-" display
+" Display
 set title
+set wrap
+set ruler
+set laststatus=2
+set cmdheight=2
+
+" Indent
 set autoindent
 set smartindent
+set shiftwidth=2
 set showmatch
+
+" Searching
+set wrapscan
 set ignorecase
 set smartcase
 set incsearch
 set hlsearch
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
-set wrap
-set wrapscan
 
+" File treat
 set nobackup
 set noswapfile
 set autoread
-set noerrorbells
+set hidden
+set wildmode=list:longest
 
+" Visual
 set cursorline
 set cursorcolumn
-set ruler
 set showcmd
-set laststatus=2
-set cmdheight=2
 
+" Tab settings
 set expandtab
 set tabstop=2
 set softtabstop=2
-set shiftwidth=2
 
+" Other settings
+set noerrorbells
 set backspace=indent,eol,start
 set ambiwidth=double
 set virtualedit=block
-set wildmode=list:longest
-set hidden
 
-" メニューバーを非表示にする
-" set guioptions-=m
-
-" HTML/XML閉じタグ自動補完
+"----- HTML/XML tab complete ------
 augroup MyXML
   autocmd!
     autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o>
       autocmd Filetype html inoremap <buffer> </ </<C-x><C-o>
       augroup END
 
+" Keymapping
+"----- Tab navigation ------
+nnoremap <C-S-tab> :tabprevious<CR>
+nnoremap <C-tab>   :tabnext<CR>
+nnoremap <C-t>     :tabnew<CR>
 
+" Plugin
 call neobundle#begin(expand('~/.vim/bundle/'))
 
 NeoBundle 'Shougo/vimproc.vim', {
